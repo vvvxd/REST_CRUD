@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "events", value = "/events")
+@WebServlet("/events")
 public class EventController extends HttpServlet {
     EventService eventService = new EventService();
 
