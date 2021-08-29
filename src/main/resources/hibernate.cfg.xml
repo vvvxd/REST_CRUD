@@ -3,10 +3,10 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/servlet_crud</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">123</property>
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-52-208-221-89.eu-west-1.compute.amazonaws.com:5432/d45ls8ktgmi296</property>
+        <property name="hibernate.connection.username">yswuaixcpksxai</property>
+        <property name="hibernate.connection.password">aa71dbead4af4abc171f913cdccfb2b058d053bed230fc2d5aca3899f579baa7</property>
+        <property name="hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
         <mapping class="org.example.REST_CRUD.model.Event"/>
         <mapping class="org.example.REST_CRUD.model.User"/>

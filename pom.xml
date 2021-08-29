@@ -96,9 +96,40 @@
                 <version>5.2.4</version>
                 <configuration>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5432/servlet_crud</url>
-                    <user>postgres</user>
-                    <password>123</password>
+                    <url>jdbc:postgresql://ec2-52-208-221-89.eu-west-1.compute.amazonaws.com:5432/d45ls8ktgmi296</url>
+                    <user>yswuaixcpksxai</user>
+                    <password>aa71dbead4af4abc171f913cdccfb2b058d053bed230fc2d5aca3899f579baa7</password>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.heroku</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>8.5.61.0</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <appName>rest-crud-vvvxd</appName>
                 </configuration>
             </plugin>
         </plugins>
