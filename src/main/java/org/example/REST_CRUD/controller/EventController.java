@@ -1,6 +1,7 @@
 package org.example.REST_CRUD.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.example.REST_CRUD.model.Event;
 import org.example.REST_CRUD.service.EventService;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/events")
+@WebServlet(value ="/events")
 public class EventController extends HttpServlet {
     EventService eventService = new EventService();
 
@@ -41,7 +42,7 @@ public class EventController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Event newEvent = new ObjectMapper().readValue(req.getReader(), Event.class);
+        Event newEvent = new Gson().fromJson(req.getReader(), Event.class);
         eventService.save(newEvent);
         String eventsJson = new ObjectMapper().writeValueAsString(newEvent);
         resp.getWriter().write(eventsJson);

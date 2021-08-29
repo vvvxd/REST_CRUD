@@ -1,6 +1,7 @@
 package org.example.REST_CRUD.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "events")
@@ -13,7 +14,7 @@ public class Event {
     @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "uploadDate")
-    private long uploaded;
+    private Date uploaded;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
     private File file;
@@ -34,13 +35,7 @@ public class Event {
         this.user = user;
     }
 
-    public long getUploaded() {
-        return uploaded;
-    }
 
-    public void setUploaded(long uploaded) {
-        this.uploaded = uploaded;
-    }
 
     public File getFile() {
         return file;
@@ -50,7 +45,16 @@ public class Event {
         this.file = file;
     }
 
-    public Event(long id, User user, long uploaded, File file) {
+
+    public Date getUploaded() {
+        return uploaded;
+    }
+
+    public void setUploaded(Date uploaded) {
+        this.uploaded = uploaded;
+    }
+
+    public Event(long id, User user, Date uploaded, File file) {
         this.id = id;
         this.user = user;
         this.uploaded = uploaded;

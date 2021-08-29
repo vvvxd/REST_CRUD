@@ -1,6 +1,7 @@
 package org.example.REST_CRUD.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.example.REST_CRUD.model.User;
 import org.example.REST_CRUD.service.UserService;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/users")
+@WebServlet(value = "/users")
 public class UserController extends HttpServlet {
     UserService userService = new UserService();
 
@@ -21,7 +22,7 @@ public class UserController extends HttpServlet {
         String idLine = req.getParameter("id");
         if (idLine == null) {
             List<User> users = userService.getAll();
-            if (users != null) {
+            if (users != null || users.size()>0) {
                 String usersJson = new ObjectMapper().writeValueAsString(users);
                 resp.getWriter().write(usersJson);
             } else {
@@ -41,7 +42,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User newUser = new ObjectMapper().readValue(req.getReader(), User.class);
+        User newUser = new Gson().fromJson(req.getReader(), User.class);
         userService.save(newUser);
         String usersJson = new ObjectMapper().writeValueAsString(newUser);
         resp.getWriter().write(usersJson);
@@ -49,7 +50,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User newUser = new ObjectMapper().readValue(req.getReader(), User.class);
+        User newUser = new Gson().fromJson(req.getReader(), User.class);
         User user = userService.update(newUser);
         if (user != null) {
             String usersJson = new ObjectMapper().writeValueAsString(user);
